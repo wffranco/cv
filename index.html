@@ -29,11 +29,11 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { darkMode: 'media' }
+    // tailwind.config = { darkMode: 'media' };
   </script>
 </head>
 
-<body x-cloak class="bg-gray-100 dark:bg-gray-800 font-light">
+<body x-cloak class="bg-gray-100 dark:bg-gray-800 font-light antialiased">
   <div x-data="loadData({show: false})" x-init="setTimeout(() => (show = true), 100)" class="mx-auto max-w-4xl print:max-w-none">
     <div
       class="p-6 bg-white shadow-md print:shadow-none"
@@ -49,10 +49,10 @@
             <div class="grid grid-cols-[auto_1fr] gap-2 text-sm">
               <span>📍</span>
               <span x-text="info.location"></span>
-              <span>📱</span>
-              <a x-bind:href="`tel:${info.phone}`" x-text="info.phone" class="underline"></a>
-              <span>✉️</span>
-              <a x-bind:href="`mailto:${info.email}`" x-text="info.email" class="underline"></a>
+              <span class="hidden print:inline">📱</span>
+              <a x-bind:href="`tel:${info.phone}`" x-text="info.phone" class="hidden print:inline underline"></a>
+              <span class="hidden print:inline">✉️</span>
+              <a x-bind:href="`mailto:${info.email}`" x-text="info.email" class="hidden print:inline underline"></a>
             </div>
           </div>
           <div>
@@ -125,7 +125,12 @@
             <div class="grid grid-cols-2 gap-4">
               <template x-for="hability in habilities">
                 <div>
-                  <p x-text="hability.name"></p>
+                  <p>
+                    <span x-text="hability.name"></span>
+                    <template x-if="hability.experience">
+                      <span x-text="`(${hability.experience})`" class="text-xs"></span>
+                    </template>
+                  </p>
                   <div class="bg-gray-300 h-2 w-full">
                     <div x-bind:class="['bg-gray-900 h-full', `w-[${20*hability.lvl}%]`]"></div>
                   </div>

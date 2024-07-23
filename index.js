@@ -71,30 +71,32 @@ window.loadData = (data = {}) => {
       },
     ],
     habilities: [
-      { name: 'Front-End Development', lvl: 4.5 },
-      { name: 'Back-End Development', lvl: 4 },
-      { name: 'HTML', lvl: 5 },
-      { name: 'CSS', lvl: 5 },
-      { name: 'PHP', lvl: 5 },
-      { name: 'Laravel', lvl: 4 },
-      { name: 'JavaScript', lvl: 5 },
-      { name: 'TypeScript', lvl: 4 },
-      { name: 'Node.js', lvl: 4 },
-      { name: 'Vue.js', lvl: 5 },
-      { name: 'React', lvl: 4 },
-      { name: 'Angular', lvl: 4 },
-      { name: 'Astro', lvl: 3 },
-      { name: 'Go', lvl: 2.5 },
-      { name: 'MySql', lvl: 4.5 },
-      { name: 'PostgreSQL', lvl: 4 },
-      { name: 'Microsoft SQL Server', lvl: 3.5 },
-      { name: 'Oracle Database', lvl: 3.5 },
-      { name: 'Git', lvl: 4.5 },
-      { name: 'Docker', lvl: 4 },
-    ],
+      { name: 'Front-End Development', lvl: 4.5, experience: '2010-09' },
+      { name: 'Back-End Development', lvl: 4, experience: '2010-09' },
+      { name: 'HTML', lvl: 5, experience: '2010-09' },
+      { name: 'CSS', lvl: 5, experience: '2010-09' },
+      { name: 'PHP', lvl: 5, experience: '2010-09' },
+      { name: 'Laravel', lvl: 4, experience: '2015-03' },
+      { name: 'JavaScript', lvl: 5, experience: '2010-09' },
+      { name: 'TypeScript', lvl: 4, experience: '2019-01' },
+      { name: 'Node.js', lvl: 4, experience: '2016-01' },
+      { name: 'Vue.js', lvl: 5, experience: '2015-03' },
+      { name: 'React', lvl: 4, experience: '2020-01' },
+      { name: 'Angular.js', lvl: 4, experience: '2015-03' },
+      { name: 'Angular', lvl: 4, experience: '2018-06' },
+      { name: 'Astro', lvl: 3, experience: '2023-10' },
+      { name: 'Go', lvl: 2.5, experience: 0.8 },
+      { name: 'MySql', lvl: 4.5, experience: '2010-09' },
+      { name: 'PostgreSQL', lvl: 4, experience: 2.1 },
+      { name: 'Microsoft SQL Server', lvl: 3.5, experience: 1.1 },
+      { name: 'Oracle Database', lvl: 3.5, experience: 2.1 },
+      { name: 'MongoDB', lvl: 4, experience: 4.1 },
+      { name: 'Git', lvl: 4.5, experience: '2014-01' },
+      { name: 'Docker', lvl: 4, experience: '2018-06' },
+    ].map(h => ({ ...h, experience: formatExp(h.experience) })),
     info: {
       about: [
-        `Web Developer with ${years}+ Years of Experience.`,
+        `Web developer with ${formatExp('2010-09')} of experience.`,
         'I can implement complex ideas and developing high-level applications, having a diverse experience in different projects, including (but not limited to) social networks, hotel industry, and AML (Anti-Money Laundering) systems.',
         'I keep myself updated with the languages, frameworks and tools I know, ensuring innovative and efficient solutions for every project.',
         'Located in Colombia, but open to relocation.'
@@ -120,4 +122,22 @@ window.loadData = (data = {}) => {
     ],
     ...data,
   };
+};
+
+/** Format experience time */
+function formatExp(value) {
+  if (/\d{4}-\d{2}/.test(value)) {
+    value += '-01';
+  }
+  if (/\d{4}-\d{2}-\d{2}/.test(value)) {
+    const start = new Date(value);
+    const now = new Date();
+    value = (now - start) / 1000 / 60 / 60 / 24 / 365.25;
+  }
+  if (!isNaN(value)) {
+    if (value > 3) return `${Math.floor(value)}+ years`;
+    const years = Math.round(value);
+    return `${years}${years < value ? '+' : '-'} years`;
+  }
+  return value;
 }
