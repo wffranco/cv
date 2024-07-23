@@ -33,97 +33,105 @@
   </script>
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-800 font-light" x-data="loadData()">
-  <div x-cloak class="max-w-4xl mx-auto p-6 bg-white shadow-md print:shadow-none">
-    <div class="flex flex-col md:flex-row print:flex-row">
-      <div class="flex flex-col w-full md:w-1/3 print:w-1/3 bg-gray-900 text-white p-4 gap-6">
-        <div>
-          <h3 x-text="info.name" class="text-3xl bebas-neue"></h3>
-          <div class="grid grid-cols-[auto_1fr] gap-2">
-            <span>📍</span>
-            <span x-text="info.location"></span>
-            <span>📱</span>
-            <a x-bind:href="`tel:${info.phone}`" x-text="info.phone" class="underline"></a>
-            <span>✉️</span>
-            <a x-bind:href="`mailto:${info.email}`" x-text="info.email" class="underline"></a>
+<body x-cloak class="bg-gray-100 dark:bg-gray-800 font-light">
+  <div x-data="loadData({show: false})" x-init="setTimeout(() => (show = true), 100)" class="mx-auto max-w-4xl print:max-w-none">
+    <div
+      class="p-6 bg-white shadow-md print:shadow-none"
+      x-show="show"
+      x-transition:enter="transition ease-in-out duration-500"
+      x-transition:enter-start="-ml-5 opacity-0"
+      x-transition:enter-end="ml-0 opacity-100"
+    >
+      <div class="flex flex-col md:flex-row print:flex-row">
+        <div class="flex flex-col w-full md:w-1/3 print:w-1/3 bg-gray-900 text-white p-4 gap-6">
+          <div>
+            <h3 x-text="info.name" class="text-3xl bebas-neue"></h3>
+            <div class="grid grid-cols-[auto_1fr] gap-2 text-sm">
+              <span>📍</span>
+              <span x-text="info.location"></span>
+              <span>📱</span>
+              <a x-bind:href="`tel:${info.phone}`" x-text="info.phone" class="underline"></a>
+              <span>✉️</span>
+              <a x-bind:href="`mailto:${info.email}`" x-text="info.email" class="underline"></a>
+            </div>
           </div>
-        </div>
-        <div>
-          <h3 class="text-lg bebas-neue">Nationalities</h3>
-          <template x-for="nationality in info.nationalities">
-            <div x-text="nationality"></div>
-          </template>
-        </div>
-        <div>
-          <h3 class="text-lg bebas-neue">Languages</h3>
-          <template x-for="{name, lvl} in languages">
-            <div>
-              <div x-text="name"></div>
-              <div class="bg-gray-700 h-2 w-full">
-                <div x-bind:class="['bg-white h-2', `w-${lvl}/5`]"></div>
-              </div>
-            </div>
-          </template>
-        </div>
-        <div>
-          <h3 class="text-lg bebas-neue">Links</h3>
-          <ul class="list-disc list-inside">
-            <template x-for="{name,url} in links">
-              <li><a x-bind:href="url" x-text="name" class="underline"></a></li>
-            </template>
-          </ul>
-        </div>
-        <div class="mt-6">
-          <h3 class="text-lg bebas-neue">Education</h3>
-          <template x-for="education in educations">
-            <div>
-              <p x-text="education.institution" class="font-bold"></p>
-              <p x-text="`${education.location} - ${education.date}`"></p>
-              <p x-text="education.degree" class="font-bold"></p>
-              <p x-text="education.description"></p>
-            </div>
-          </template>
-        </div>
-      </div>
-      <div class="flex flex-col gap-6 w-full md:w-2/3 print:w-2/3 p-4">
-        <div>
-          <h3 class="text-xl bebas-neue">About Me</h3>
-          <template x-for="paragraph in info.about">
-            <p x-text="paragraph"></p>
-          </template>
-        </div>
-        <div>
-          <h3 class="text-xl bebas-neue border-b-2 border-gray-400">Experiences</h3>
-          <div class="flew flex-col mt-4">
-            <template x-for="experience in experiences">
-              <div class="grid grid-cols-[2fr_auto_3fr] gap-3">
-                <div>
-                  <h4 class="text-xl font-bold" x-text="experience.company"></h4>
-                  <p x-text="experience.mode" class="text-sm"></p>
-                  <p x-text="experience.location" class="text-sm"></p>
-                </div>
-                <div class="relative border border-gray-300 top-2.5">
-                  <div class="absolute -top-px -left-1.5 h-3 w-3 bg-gray-400 rounded-full"></div>
-                </div>
-                <div>
-                  <p class="font-bold mt-1" x-text="experience.position"></p>
-                  <p class="text-sm" x-text="experience.period"></p>
-                </div>
-              </div>
+          <div>
+            <h3 class="text-lg bebas-neue">Nationalities</h3>
+            <template x-for="nationality in info.nationalities">
+              <div x-text="nationality"></div>
             </template>
           </div>
-        </div>
-        <div>
-          <h3 class="text-2xl bebas-neue">Habilities</h3>
-          <div class="grid grid-cols-2 gap-4">
-            <template x-for="hability in habilities">
+          <div>
+            <h3 class="text-lg bebas-neue">Languages</h3>
+            <template x-for="{name, lvl} in languages">
               <div>
-                <p x-text="hability.name"></p>
-                <div class="bg-gray-300 h-2 w-full">
-                  <div x-bind:class="['bg-gray-900 h-full', `w-[${20*hability.lvl}%]`]"></div>
+                <div x-text="name"></div>
+                <div class="bg-gray-700 h-2 w-full">
+                  <div x-bind:class="['bg-white h-2', `w-${lvl}/5`]"></div>
                 </div>
               </div>
             </template>
+          </div>
+          <div>
+            <h3 class="text-lg bebas-neue">Links</h3>
+            <ul class="list-disc list-inside">
+              <template x-for="{name,url} in links">
+                <li><a x-bind:href="url" x-text="name" class="underline"></a></li>
+              </template>
+            </ul>
+          </div>
+          <div class="mt-6">
+            <h3 class="text-lg bebas-neue">Education</h3>
+            <template x-for="education in educations">
+              <div>
+                <p x-text="education.institution" class="font-bold"></p>
+                <p x-text="`${education.location} - ${education.date}`"></p>
+                <p x-text="education.degree" class="font-bold"></p>
+                <p x-text="education.description"></p>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div class="flex flex-col gap-6 w-full md:w-2/3 print:w-2/3 p-4">
+          <div>
+            <h3 class="text-xl bebas-neue">About Me</h3>
+            <template x-for="paragraph in info.about">
+              <p x-text="paragraph" class="print:text-sm"></p>
+            </template>
+          </div>
+          <div>
+            <h3 class="text-xl bebas-neue border-b-2 border-gray-400">Experiences</h3>
+            <div class="flew flex-col mt-4">
+              <template x-for="experience in experiences">
+                <div class="grid grid-cols-[2fr_auto_3fr] gap-3">
+                  <div>
+                    <h4 class="text-xl font-bold" x-text="experience.company"></h4>
+                    <p x-text="experience.mode" class="text-sm"></p>
+                    <p x-text="experience.location" class="text-sm"></p>
+                  </div>
+                  <div class="relative border border-gray-300 top-2.5">
+                    <div class="absolute -top-px -left-1.5 h-3 w-3 bg-gray-400 rounded-full"></div>
+                  </div>
+                  <div>
+                    <p class="font-bold mt-1" x-text="experience.position"></p>
+                    <p class="text-sm" x-text="experience.period"></p>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl bebas-neue">Habilities</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <template x-for="hability in habilities">
+                <div>
+                  <p x-text="hability.name"></p>
+                  <div class="bg-gray-300 h-2 w-full">
+                    <div x-bind:class="['bg-gray-900 h-full', `w-[${20*hability.lvl}%]`]"></div>
+                  </div>
+                </div>
+              </template>
+            </div>
           </div>
         </div>
       </div>

@@ -3,31 +3,6 @@ window.loadData = (data = {}) => {
   const start = new Date('2010-09-01');
   const years = Math.floor((new Date() - start) / 1000 / 60 / 60 / 24 / 365.25);
   return {
-    info: {
-      email: 'willemffrancoc@gmail.com',
-      location: 'Medellín, Antioquia, Colombia',
-      name: 'Willem Franco',
-      nationalities: [
-        '🇪🇸 Spanish',
-        '🇻🇪 Venezuelan',
-      ],
-      phone: '+573505942772',
-      about: [
-        `Web Developer with ${years}+ Years of Experience.`,
-        'I can implement complex ideas and developing high-level applications, having a diverse experience in different projects, including (but not limited to) social networks, hotel industry, and AML (Anti-Money Laundering) systems.',
-        'I keep myself updated with the languages, frameworks and tools I know, ensuring innovative and efficient solutions for every project.',
-        'Located in Colombia, but open to relocation.'
-      ],
-    },
-    languages: [
-      { name: 'Spanish (Native)', lvl: 5 },
-      { name: 'English', lvl: 4 },
-    ],
-    links: [
-      { name: 'GitHub', url: 'https://github.com/wffranco' },
-      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/wffranco' },
-      { name: 'HackerRank', url: 'https://www.hackerrank.com/profile/willemfranco' },
-    ],
     educations: [
       {
         degree: 'Higher University Technician in Computer Science (IT Development)',
@@ -116,6 +91,32 @@ window.loadData = (data = {}) => {
       { name: 'Oracle Database', lvl: 3.5 },
       { name: 'Git', lvl: 4.5 },
       { name: 'Docker', lvl: 4 },
+    ],
+    info: {
+      about: [
+        `Web Developer with ${years}+ Years of Experience.`,
+        'I can implement complex ideas and developing high-level applications, having a diverse experience in different projects, including (but not limited to) social networks, hotel industry, and AML (Anti-Money Laundering) systems.',
+        'I keep myself updated with the languages, frameworks and tools I know, ensuring innovative and efficient solutions for every project.',
+        'Located in Colombia, but open to relocation.'
+      ],
+      email: 'willemffrancoc@gmail.com',
+      location: 'Medellín, Antioquia, Colombia 🇨🇴',
+      name: 'Willem Franco',
+      nationalities: [
+        '🇪🇸 Spanish',
+        '🇻🇪 Venezuelan',
+      ],
+      phone: '+573505942772',
+    },
+    languages: [
+      { name: 'Spanish (Native)', lvl: 5 },
+      { name: 'English', lvl: 4 },
+    ],
+    links: [
+      { name: 'CV Page', url: 'https://wffranco.github.io/cv/' },
+      { name: 'GitHub', url: 'https://github.com/wffranco' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/wffranco' },
+      { name: 'HackerRank', url: 'https://www.hackerrank.com/profile/willemfranco' },
     ],
     ...data,
   };
