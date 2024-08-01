@@ -25,7 +25,7 @@
     }
   </style>
 
-  <script defer src="./index.js"></script>
+  <script defer src="./index.js?2024-07-31"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -34,7 +34,7 @@
 </head>
 
 <body x-cloak class="bg-gray-100 dark:bg-gray-800 font-light antialiased">
-  <div x-data="loadData({show: false})" x-init="setTimeout(() => (show = true), 100)" class="mx-auto max-w-4xl print:max-w-none">
+  <div x-data="loadData({show: false, salary: 'month'})" x-init="setTimeout(() => (show = true), 100)" class="mx-auto max-w-4xl print:max-w-none">
     <div
       class="p-6 bg-white shadow-md print:shadow-none"
       x-show="show"
@@ -73,6 +73,20 @@
             </template>
           </div>
           <div>
+            <h3 class="text-lg bebas-neue">Salary Expectation</h3>
+            <div class="flex gap-1 items-center">
+              <div>
+                $<span x-text="info.salary[salary]"></span>+
+                per <span x-text="salary" class="hidden print:inline"></span>
+              </div>
+              <select x-model="salary" class="print:hidden bg-transparent font-bold">
+                <option value="hour">Hour</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+              </select>
+            </div>
+          </div>
+          <div>
             <h3 class="text-lg bebas-neue">Links</h3>
             <ul class="list-disc list-inside">
               <template x-for="{name,url} in links">
@@ -107,13 +121,13 @@
                   <div>
                     <h4 class="text-xl font-bold" x-text="experience.company"></h4>
                     <p x-text="experience.mode" class="text-sm"></p>
-                    <p x-text="experience.location" class="text-sm"></p>
+                    <p x-text="experience.location" class="text-sm print:text-xs"></p>
                   </div>
                   <div class="relative border border-gray-300 top-2.5">
-                    <div class="absolute -top-px -left-1.5 h-3 w-3 bg-gray-400 rounded-full"></div>
+                    <div class="absolute -top-1 -left-1.5 h-3 w-3 bg-gray-400 rounded-full"></div>
                   </div>
                   <div>
-                    <p class="font-bold mt-1" x-text="experience.position"></p>
+                    <p class="font-bold" x-text="experience.position"></p>
                     <p class="text-sm" x-text="experience.period"></p>
                   </div>
                 </div>
