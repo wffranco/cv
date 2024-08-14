@@ -70,32 +70,80 @@ window.loadData = (data = {}) => {
         description: 'Worked as a full-stack developer in a team of 10 people. I was responsible for the development of a web application for a client in the United States. I also worked on the development of a mobile application for a client in Colombia.',
       },
     ],
-    habilities: [
-      { name: 'Back-End Development', lvl: 4, experience: '2010-09' },
-      { name: 'Front-End Development', lvl: 4.5, experience: '2010-09' },
-      { name: 'Git', lvl: 4.5, experience: '2014-01' },
-      { name: 'Docker', lvl: 4, experience: '2018-06' },
-      { name: 'AWS', lvl: 3, experience: 1.1 },
-      { name: 'PHP', lvl: 5, experience: '2010-09' },
-      { name: 'Laravel', lvl: 4, experience: '2015-03' },
-      { name: 'Livewire', lvl: 3, experience: '2023-03' },
-      { name: 'Node.js', lvl: 4, experience: '2016-01' },
-      { name: 'JavaScript', lvl: 5, experience: '2010-09' },
-      { name: 'TypeScript', lvl: 4, experience: '2019-01' },
-      { name: 'Vue.js', lvl: 5, experience: '2015-03' },
-      { name: 'React', lvl: 4, experience: '2020-01' },
-      { name: 'Angular.js', lvl: 4, experience: '2015-03' },
-      { name: 'Angular', lvl: 4, experience: '2018-06' },
-      { name: 'Astro', lvl: 3, experience: '2023-10' },
-      { name: 'HTML', lvl: 5, experience: '2010-09' },
-      { name: 'CSS', lvl: 5, experience: '2010-09' },
-      { name: 'Go', lvl: 2.5, experience: 0.8 },
-      { name: 'MySql', lvl: 4.5, experience: '2010-09' },
-      { name: 'PostgreSQL', lvl: 4, experience: 2.1 },
-      { name: 'Microsoft SQL Server', lvl: 3.5, experience: 1.1 },
-      { name: 'Oracle Database', lvl: 3.5, experience: 2.1 },
-      { name: 'MongoDB', lvl: 4, experience: 4.1 },
-    ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+    habilities: {
+      general: {
+        title: 'General Skills',
+        items: [
+          { name: 'Back-End Development', lvl: 4, experience: '2010-09' },
+          { name: 'Front-End Development', lvl: 4.5, experience: '2010-09' },
+          { name: 'Team Leader', lvl: 4, experience: 1.9 },
+          { name: 'AWS', lvl: 3, experience: 1.1 },
+        ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+      },
+      databases: {
+        title: 'Databases',
+        items: [
+          { name: 'MySql', lvl: 4.5, experience: '2010-09' },
+          { name: 'PostgreSQL', lvl: 4, experience: 2.1 },
+          { name: 'Microsoft SQL Server', lvl: 3.5, experience: 1.1 },
+          { name: 'Oracle Database', lvl: 3.5, experience: 2.1 },
+          { name: 'MongoDB', lvl: 4, experience: 4.1 },
+        ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+      },
+      languages: {
+        title: 'Languages',
+        items: [
+          { name: 'PHP', lvl: 5, experience: '2010-09' },
+          { name: 'HTML', lvl: 5, experience: '2010-09' },
+          { name: 'CSS', lvl: 5, experience: '2010-09' },
+          { name: 'JavaScript', lvl: 5, experience: '2010-09' },
+          { name: 'Node.js', lvl: 4, experience: 2016 },
+          { name: 'TypeScript', lvl: 4, experience: 2019 },
+          { name: 'Go', lvl: 2.5, experience: 0.8 },
+        ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+      },
+      frameworks: {
+        title: 'Frameworks',
+        items: [
+          { name: 'Laravel', lvl: 4, experience: '2015-03' },
+          { name: 'Livewire', lvl: 3, experience: '2023-03' },
+          { name: 'Vue.js', lvl: 5, experience: '2015-03' },
+          { name: 'React', lvl: 4, experience: 2020 },
+          { name: 'Angular.js', lvl: 4, experience: '2015-03' },
+          { name: 'Angular', lvl: 4, experience: '2018-06' },
+          { name: 'Astro', lvl: 3, experience: '2023-10' },
+          { name: 'Nest.js', lvl: 3, experience: 0.8 },
+        ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+      },
+      tools: {
+        title: 'Tools',
+        items: [
+          { name: 'Git', lvl: 4.5, experience: 2014 },
+          { name: 'Docker', lvl: 4, experience: '2018-06' },
+          { name: 'Jira', lvl: 3, experience: 2019 },
+          { name: 'Figma', lvl: 3, experience: '2018-06' },
+          { name: 'Postman', lvl: 4, experience: '2018-06' },
+          { name: 'VSCode', lvl: 5, experience: 2016 },
+        ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+      },
+      others: {
+        title: 'Others',
+        items: [
+          { name: 'SOLID', lvl: 4, experience: 2018 },
+          { name: 'DRY', lvl: 4, experience: 2018 },
+          { name: 'KISS', lvl: 4, experience: 2018 },
+          { name: 'Design Patterns', lvl: 4, experience: 2018 },
+          { name: 'TDD', lvl: 4, experience: 1.9 },
+          { name: 'REST APIs', lvl: 4, experience: 2018 },
+          { name: 'Microservices', lvl: 3, experience: 0.8 },
+          { name: 'Scrum', lvl: 4, experience: 2.1 },
+          { name: 'CI/CD', lvl: 3, experience: 0.8 },
+          { name: 'GraphQL', lvl: 3, experience: 0.8 },
+          { name: 'WebSockets', lvl: 3, experience: 2020 },
+          { name: 'JWT', lvl: 3, experience: 2018 },
+        ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+      },
+    },
     info: {
       about: [
         `Web developer with ${formatExp('2010-09')} of experience. I am a proactive person, always looking for new challenges and learning new technologies.`,
@@ -135,10 +183,13 @@ window.loadData = (data = {}) => {
 
 /** Format experience time */
 function formatExp(value) {
-  if (/\d{4}-\d{2}/.test(value)) {
+  if (/^\d{4}$/.test(value)) {
     value += '-01';
   }
-  if (/\d{4}-\d{2}-\d{2}/.test(value)) {
+  if (/^\d{4}-\d{2}$/.test(value)) {
+    value += '-01';
+  }
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
     const start = new Date(value);
     const now = new Date();
     value = (now - start) / 1000 / 60 / 60 / 24 / 365.25;

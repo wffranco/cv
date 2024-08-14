@@ -25,7 +25,7 @@
     }
   </style>
 
-  <script defer src="./index.js?2024-07-31"></script>
+  <script defer src="./index.js?2024-08-13"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -134,23 +134,28 @@
               </template>
             </div>
           </div>
-          <div>
-            <h3 class="text-2xl bebas-neue">Habilities</h3>
-            <div class="grid grid-cols-2 gap-4">
-              <template x-for="hability in habilities">
-                <div>
-                  <p>
-                    <span x-text="hability.name"></span>
-                    <template x-if="hability.experience">
-                      <span x-text="`(${hability.experience})`" class="text-xs"></span>
-                    </template>
-                  </p>
-                  <div class="bg-gray-300 h-2 w-full">
-                    <div x-bind:class="['bg-gray-900 h-full', `w-[${20*hability.lvl}%]`]"></div>
-                  </div>
+          <div class="flex flex-col gap-4">
+            <h3 class="text-2xl bebas-neue border-b-2 border-gray-400">Habilities</h3>
+            <template x-for="type in habilities">
+              <div>
+                <h4 class="text-xl bebas-neue" x-text="type.title"></h4>
+                <div class="grid grid-cols-2 gap-4">
+                  <template x-for="{lvl, name, experience} in type.items">
+                    <div>
+                      <p>
+                        <span x-text="name"></span>
+                        <template x-if="experience">
+                          <span x-text="`(${experience})`" class="text-xs"></span>
+                        </template>
+                      </p>
+                      <div class="bg-gray-300 h-2 w-full">
+                        <div x-bind:class="['bg-gray-900 h-full', `w-[${20*lvl}%]`]"></div>
+                      </div>
+                    </div>
+                  </template>
                 </div>
-              </template>
-            </div>
+              </div>
+            </template>
           </div>
         </div>
       </div>
