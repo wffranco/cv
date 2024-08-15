@@ -183,18 +183,13 @@ window.loadData = (data = {}) => {
 
 /** Format experience time */
 function formatExp(value) {
-  if (/^\d{4}$/.test(value)) {
-    value += '-01';
-  }
-  if (/^\d{4}-\d{2}$/.test(value)) {
-    value += '-01';
-  }
-  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-    const start = new Date(value);
+  if (/^\d{4}(?:-\d{2}){0,2}$/.test(value)) {
+    const [,year,month,day] = String(value).match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?$/);
+    const start = new Date(`${year}-${month||'01'}-${day||'01'}`);
     const now = new Date();
     value = (now - start) / 1000 / 60 / 60 / 24 / 365.25;
   }
-  if (!isNaN(value)) {
+  if (!isNaN(value) && value < 100) {
     if (value > 3) return `${Math.floor(value)}+ years`;
     const years = Math.round(value);
     return `${years}${years < value ? '+' : '-'} years`;
