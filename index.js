@@ -172,10 +172,10 @@ window.loadData = (data = {}) => {
       { name: 'English', lvl: 4 },
     ],
     links: [
-      { name: 'CV Page', url: 'https://wffranco.github.io/cv/' },
-      { name: 'GitHub', url: 'https://github.com/wffranco' },
-      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/wffranco' },
-      { name: 'HackerRank', url: 'https://www.hackerrank.com/profile/willemfranco' },
+      { name: 'CV Page', url: 'https://wffranco.github.io/cv/', logo: './imgs/cv.svg' },
+      { name: 'GitHub', url: 'https://github.com/wffranco', logo: './imgs/github.svg' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/wffranco', logo: './imgs/linkedin.svg' },
+      { name: 'HackerRank', url: 'https://www.hackerrank.com/profile/willemfranco', logo: './imgs/hackerrank.svg' }, //logo: `data:image/svg+xml,%3Csvg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve"%3E%3Cstyle type="text/css"%3E .st0%7Bfill:%230E141E;%7D .st1%7Bfill:%23FFFFFF;%7D .st2%7Bfill:%2300EA64;%7D%0A%3C/style%3E%3Crect x="0" y="0" class='st0' width='256' height='256'/%3E%3Cg%3E%3Cpath class='st1' d='M125.39,85.35h-19.26c-0.65,0-1.18,0.53-1.18,1.18v30.61H84.2V86.54c0-0.65-0.53-1.18-1.18-1.18H63.76 c-0.65,0-1.18,0.53-1.18,1.18v82.85c0,0.65,0.53,1.18,1.18,1.18h19.26c0.65,0,1.18-0.53,1.18-1.18v-30.61h20.75v30.61 c0,0.65,0.53,1.18,1.18,1.18h19.26c0.65,0,1.18-0.53,1.18-1.18V86.54C126.57,85.88,126.04,85.35,125.39,85.35z'/%3E%3Cpath class='st2' d='M199.76,170.57h-61.64c-0.65,0-1.18-0.53-1.18-1.18V86.53c0-0.65,0.53-1.18,1.18-1.18h61.64 c0.65,0,1.18,0.53,1.18,1.18v82.85C200.94,170.04,200.41,170.57,199.76,170.57z'/%3E%3C/g%3E%3C/svg%3E%0A` },
     ],
     ...data,
   };

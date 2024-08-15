@@ -29,7 +29,14 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // tailwind.config = { darkMode: 'media' };
+    tailwind.config = {
+      darkMode: 'media',
+      plugins: [
+        plugin(function ({ addVariant }) {
+          addVariant('screen', '@media only screen');
+        })
+      ],
+    };
   </script>
 </head>
 
@@ -88,9 +95,12 @@
           </div>
           <div>
             <h3 class="text-lg bebas-neue">Links</h3>
-            <ul class="list-disc list-inside">
-              <template x-for="{name,url} in links">
-                <li><a x-bind:href="url" x-text="name" class="underline"></a></li>
+            <ul class="print:list-disc print:list-inside flex print:flex-col gap-2">
+              <template x-for="{logo,name,url} in links">
+                <li><a x-bind:href="url" x-bind:title="name" class="flex gap-1">
+                  <img x-bind:src="logo" x-bind:alt="name" class="h-6 print:h-3">
+                  <span x-text="name" class="underline hidden print:inline"></span>
+                </a></li>
               </template>
             </ul>
           </div>
