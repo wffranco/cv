@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Currículum Vitae - Willem F. Franco C.</title>
+  <link rel="icon" href="./imgs/cv.svg" type="image/svg+xml">
 
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
   <style>
@@ -25,7 +26,7 @@
     }
   </style>
 
-  <script defer src="./index.js?2024-08-13"></script>
+  <script defer src="./index.js?2024-08-15"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -97,8 +98,8 @@
             <h3 class="text-lg bebas-neue">Links</h3>
             <ul class="print:list-disc print:list-inside flex print:flex-col gap-2">
               <template x-for="{logo,name,url} in links">
-                <li><a x-bind:href="url" x-bind:title="name" class="flex gap-1">
-                  <img x-bind:src="logo" x-bind:alt="name" class="h-6 print:h-3">
+                <li><a x-bind:href="url" x-bind:title="name" class="flex print:inline gap-1">
+                  <img x-bind:src="logo" x-bind:alt="name" class="h-6 print:h-3 inline">
                   <span x-text="name" class="underline hidden print:inline"></span>
                 </a></li>
               </template>
@@ -120,14 +121,14 @@
           <div>
             <h3 class="text-xl bebas-neue">About Me</h3>
             <template x-for="paragraph in info.about">
-              <p x-text="paragraph" class="print:text-sm"></p>
+              <p x-text="paragraph"></p>
             </template>
           </div>
           <div>
             <h3 class="text-xl bebas-neue border-b-2 border-gray-400">Experiences</h3>
             <div class="flew flex-col mt-4">
               <template x-for="experience in experiences">
-                <div class="grid grid-cols-[2fr_auto_3fr] gap-3">
+                <div class="grid grid-cols-[2fr_auto_3fr] gap-3 break-before-auto">
                   <div>
                     <h4 class="text-xl font-bold" x-text="experience.company"></h4>
                     <p x-text="experience.mode" class="text-sm"></p>
@@ -147,7 +148,7 @@
           <div class="flex flex-col gap-4">
             <h3 class="text-2xl bebas-neue border-b-2 border-gray-400">Habilities</h3>
             <template x-for="type in habilities">
-              <div>
+              <div class="break-before-auto">
                 <h4 class="text-xl bebas-neue" x-text="type.title"></h4>
                 <div class="grid grid-cols-2 gap-4">
                   <template x-for="{lvl, name, experience} in type.items">
