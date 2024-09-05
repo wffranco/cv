@@ -18,7 +18,7 @@
         position: 'Web Administrator',
         from: '2010-07',
         to: '2015-06',
-        description: 'Worked as a full-stack developer in a team of 10 people. I was responsible for the development of a web application for a client in the United States. I also worked on the development of a mobile application for a client in Colombia.',
+        description: 'Worked as a full-stack developer in a team of 5 people. I was responsible for the development of a social network (Pure PHP, jQuery) for a client in the United States. I also worked on the mobile application for the same client (android, cordova/phonegap) and manage servers (AWS). Lastly I worked on the development on other projects related with warehouse management and e-commerce (codeigniter, laravel, angular 1, vue).',
       },
       {
         company: 'Alcaldía de Valencia',
@@ -27,7 +27,7 @@
         position: 'Development Analyst II',
         from: '2016-01',
         to: '2018-04',
-        description: 'Worked as a full-stack developer in a team of 5 people. I was responsible for the development of the frontend and backend of a web application for a client in the United States. I also worked on the development of a mobile application for a client in Colombia.',
+        description: 'Worked as a full-stack developer together with 20 people. I developed 3 new products and maintained 4 legacy systems (Pure PHP, Vue, jQuery), helped in infrastructure decisions (linux servers), supported the dba team in the database design (Oracle DB), and started a main project (laravel) with embeded sub-applications (laravel-modules, laravel-blade, vue).',
       },
       {
         company: 'Alphas Technology',
@@ -36,7 +36,7 @@
         position: 'Web Developer',
         from: '2018-05',
         to: '2019-01',
-        description: 'Worked as a full-stack developer in a team of 10 people. I was responsible for the development of a web application for a client in the United States. I also worked on the development of a mobile application for a client in Colombia.',
+        description: 'Worked as a full-stack developer in a team of 10 people. I worked on multiple projects for clients in Colombia, Spain, Chile, Argentina, and Venezuela, mostly working on backend projects in php or node, and frontend projects in angular, react, or vue.',
       },
       {
         company: 'Webkreativo',
@@ -45,7 +45,7 @@
         position: 'Fullstack Developer',
         from: '2019-02',
         to: '2019-05',
-        description: 'Worked as a full-stack developer in a team of 5 people. I was responsible for the development of the frontend and backend of a web application for a client in the United States. I also worked on the development of a mobile application for a client in Colombia.',
+        description: 'Worked as a full-stack developer in a team of 3 people, responsible for implementing new features and fixing bugs in a Codeigniter web application for a client in the United States. Also supporting a couple of WordPress websites.',
       },
       {
         company: 'Stradata AML',
@@ -54,7 +54,7 @@
         position: 'Senior Web Developer',
         from: '2019-06',
         to: '2020-08',
-        description: 'Worked as a full-stack developer in a team of 10 people. I was responsible for the development of a web application for a client in the United States. I also worked on the development of a mobile application for a client in Colombia.',
+        description: 'Worked as a full-stack developer in a team of 10+ people. I was responsible for the development of a new version of the frontend application (Vue) for an AML system, optimize the database (MySQL) and addind new modules in the backend (Codeigniter). Also fixing bugs, scrapping data from websites, and developing new features in other internal tools (Codeigniter, Laravel, Python in AWS Lambda, and more).',
       },
       {
         company: 'Blankfactor',
@@ -63,7 +63,7 @@
         position: 'Senior Software Developer',
         from: '2021-02',
         to: '2022-12',
-        description: 'Worked as a full-stack developer in a team of 5 people. I was responsible for the development of the frontend and backend of a web application for a client in the United States. I also worked on the development of a mobile application for a client in Colombia.',
+        description: 'Worked as a full-stack developer in different projects and teams. Worked with different technologies and frameworks, like Laravel, Codeigniter, Vue.js, React, and Angular. I was responsible for the development of a web application for a client in the United States, and the development of a mobile application for a client in Colombia.',
       },
       {
         company: 'Postindustria',
@@ -71,7 +71,7 @@
         location: 'Medellín, Antioquia, Colombia',
         position: 'Senior Software Developer',
         from: '2023-07',
-        description: 'Working as a full-stack developer in a team of 10 people. I am responsible for the development of a web application for a client in the United States. I am also working on the development of a mobile application for a client in Colombia.',
+        description: 'Working as a full-stack developer for USA clients. Responsible for a frontend migration from vue 2 to vue 3, adding some new modules in the same project, and a new application (Laravel, vue).',
       },
       {
         company: 'Freelancer',
@@ -181,6 +181,10 @@
         'I was a team leader in some projects, and I have experience supporting on all stages of the software development life cycle.',
         'I am a team player, with good communication skills, trying to find the best solution for the problems that we face, always willing to help my teammates and sharing my knowledge or learning from them.',
         'Located in Colombia, but open to relocation.'
+      ],
+      expectations: [
+        'I\'m looking for a company that offers opportunities for professional growth, a positive work environment, and a competitive salary.',
+        'I\'m constantly improving my stack or learning new technologies, so I look for an environment where that effort is valued.'
       ],
       email: 'willemffrancoc@gmail.com',
       location: 'Medellín, Antioquia, Colombia 🇨🇴',
