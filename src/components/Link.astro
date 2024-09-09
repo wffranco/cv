@@ -1,0 +1,13 @@
+---
+interface Props {
+  url: string;
+  name: string;
+  logo: string;
+}
+
+const {logo, url, name} = Astro.props;
+---
+<a href={url} title={name} class="flex print:inline gap-1">
+  <img src={logo} alt={name} class="h-6 print:h-3 inline">
+  <span class="underline hidden print:inline">{ name }</span>
+</a>

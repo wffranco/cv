@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/CV.astro';
+import Link from '../components/Link.astro';
+
+import info from '../data/info';
+import languages from '../data/languages';
+import links from '../data/links';
+import educations from '../data/education';
+import Experience from '../components/Experience.astro';
+import experiences from '../data/experiences';
+import { habilities } from '../data/habilities';
+import Bar from '../components/Bar.astro';
+---
+
+<Layout title="Curriculum Vitae - Willem Franco">
+  <main x-data="{salary: 'month', salaries: { hour: 23, month: 4000, year: 48000 }})" class="mx-auto max-w-4xl print:max-w-none">
+    <div class="p-6 bg-white shadow-md print:shadow-none">
+      <div class="grid sm:grid-cols-[1fr_auto]">
+        <div class="flex flex-col w-full bg-gray-900 text-white p-4 gap-6">
+          <div class="break-inside-avoid">
+            <h3 class="text-3xl font-bebas">{ info.name }</h3>
+            <div class="grid grid-cols-[auto_1fr] gap-2 text-sm">
+              <span>📍</span>
+              <span>{ info.location }</span>
+              <span class="hidden print:inline">📱</span>
+              <a href={`tel:${info.phone}`} class="hidden print:inline underline">{ info.phone }</a>
+              <span class="hidden print:inline">✉️</span>
+              <a href={`mailto:${info.email}`} class="hidden print:inline underline">{ info.email }</a>
+            </div>
+          </div>
+          <div class="break-inside-avoid">
+            <h3 class="text-lg font-bebas">Nationalities</h3>
+            {info.nationalities.map(nationality => <div>{ nationality }</div>)}
+          </div>
+          <div class="break-inside-avoid">
+            <h3 class="text-lg font-bebas">Languages</h3>
+            <div class="flex flex-col gap-1">
+              {languages.map(({ lvl, name }) => (
+                <Bar bg="bg-gray-700" color="bg-white" lvl={lvl}>{ name }</Bar>
+              ))}
+            </div>
+          </div>
+          <div class="break-inside-avoid">
+            <h3 class="text-lg font-bebas">Salary Expectation</h3>
+            <div class="flex gap-1 items-center">
+              <select class="bg-transparent font-bold print:font-normal print:appearance-none">
+                {info.salaries.map(salary => <option>{ salary }</option>)}
+              </select>
+            </div>
+          </div>
+          <div class="break-inside-avoid">
+            <h3 class="text-lg font-bebas">Links</h3>
+            <ul class="print:list-disc print:list-inside flex print:flex-col gap-2">
+              {links.map((link) => <li><Link {...link} /></li>)}
+            </ul>
+          </div>
+          <div class="break-inside-avoid">
+            <h3 class="text-xl font-bebas">What I expect from a job</h3>
+            <div>
+              {info.expectations.map(paragraph => <p class="text-sm print:text-[10px]">{ paragraph }</p>)}
+            </div>
+          </div>
+          <div class="break-inside-avoid">
+            <h3 class="text-lg font-bebas">Education</h3>
+            {educations.map(education => (
+              <div>
+                <p class="font-bold">{ education.institution }</p>
+                <p>{ `${education.location} - ${education.date}` }</p>
+                <p class="font-bold">{ education.degree }</p>
+                <p>{ education.description }</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="flex flex-col gap-6 w-full p-4">
+          <div>
+            <h3 class="text-xl font-bebas">About Me</h3>
+            <div class="print:columns-2 print:gap-2">
+              {info.about.map(paragraph => <p class="text-sm print:text-[10px]">{ paragraph }</p>)}
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bebas border-b-2 border-gray-400">Experiences</h3>
+            <div class="flew flex-col mt-4">
+              {experiences.map(experience => <Experience {...experience} />)}
+            </div>
+          </div>
+          <div class="flex flex-col gap-3">
+            <h3 class="text-2xl font-bebas border-b-2 border-gray-400">Habilities</h3>
+            {Object.values(habilities).map(({title, items}) => (
+              <div class="break-inside-avoid">
+                <h4 class="text-lg print:text-base font-bebas">{ title }</h4>
+                <div class="grid grid-cols-2 gap-2 print:gap-y-1">
+                  {items.map(({lvl, name, experience}) => (
+                    <Bar bg="bg-gray-300" color="bg-gray-900" lvl={lvl}>
+                      <span class="font-medium">{ name }</span>
+                      <span class="text-xs text-nowrap">{ experience ? `(${experience})` : '' }</span>
+                    </Bar>
+                  ))}
+                </div>
+              </div>
+            ))}
+            </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
