@@ -7,7 +7,7 @@ interface Props {
 
 const {logo, url, name} = Astro.props;
 ---
-<a href={url} title={name} class="flex print:inline gap-1">
+<a href={url} title={name} class="flex print:inline gap-1" target="_blank">
   <img src={logo} alt={name} class="h-6 print:h-3 inline">
   <span class="underline hidden print:inline">{ name }</span>
 </a>
