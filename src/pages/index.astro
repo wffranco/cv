@@ -1,19 +1,21 @@
 ---
 import Layout from '../layouts/CV.astro';
+
+import Bar from '../components/Bar.astro';
+import Experience from '../components/Experience.astro';
 import Link from '../components/Link.astro';
 
+import educations from '../data/education';
+import experiences from '../data/experiences';
+import habilities from '../data/habilities';
 import info from '../data/info';
 import languages from '../data/languages';
 import links from '../data/links';
-import educations from '../data/education';
-import Experience from '../components/Experience.astro';
-import experiences from '../data/experiences';
-import { habilities } from '../data/habilities';
-import Bar from '../components/Bar.astro';
+import { formatExp } from '../helpers';
 ---
 
 <Layout title="Curriculum Vitae - Willem Franco">
-  <main x-data="{salary: 'month', salaries: { hour: 23, month: 4000, year: 48000 }})" class="mx-auto max-w-4xl print:max-w-none">
+  <main class="mx-auto max-w-4xl print:max-w-none">
     <div class="p-6 bg-white shadow-md print:shadow-none">
       <div class="grid sm:grid-cols-[1fr_auto]">
         <div class="flex flex-col w-full bg-gray-900 text-white p-4 gap-6">
@@ -44,7 +46,7 @@ import Bar from '../components/Bar.astro';
             <h3 class="text-lg font-bebas">Salary Expectation</h3>
             <div class="flex gap-1 items-center">
               <select class="bg-transparent font-bold print:font-normal print:appearance-none">
-                {info.salaries.map(salary => <option>{ salary }</option>)}
+                {info.salaries.map(([type, value]) => <option>${value}+ per {type}</option>)}
               </select>
             </div>
           </div>
@@ -94,7 +96,7 @@ import Bar from '../components/Bar.astro';
                   {items.map(({lvl, name, experience}) => (
                     <Bar bg="bg-gray-300" color="bg-gray-900" lvl={lvl}>
                       <span class="font-medium">{ name }</span>
-                      <span class="text-xs text-nowrap">{ experience ? `(${experience})` : '' }</span>
+                      <span class="text-xs text-nowrap">{ experience ? `(${formatExp(experience)})` : '' }</span>
                     </Bar>
                   ))}
                 </div>

@@ -24,7 +24,7 @@ const info = {
     ['month', 4000],
     ['hour', 23],
     ['year', 48000],
-  ].map(([type, value]) => `$${value}+ per ${type}`),
+  ],
 };
 
 export default info;

@@ -1,22 +1,16 @@
 ---
-interface Props {
-	company: string;
-  mode: string;
-  location: string;
-  position: string;
-  from: string;
-  to?: string;
-  description: string;
-  period?: string;
-}
+import { formatDate } from '../helpers';
+import { type Experience } from '../data/experiences';
 
-const { company, period, mode, location, position, description } = Astro.props;
+interface Props extends Experience {}
+
+const { company, from, to, mode, location, position, description } = Astro.props;
 ---
 
 <div class="grid grid-cols-[3fr_auto_5fr] gap-2 break-inside-avoid">
   <div>
     <h4 class="text-base font-bold">{company}</h4>
-    <p class="text-sm print:text-xs">{period}</p>
+    <p class="text-sm print:text-xs">{formatDate(from)} - {to ? formatDate(to) : 'Present'}</p>
     <p class="text-sm print:text-xs">{mode}</p>
     <p class="text-sm print:text-xs">{location}</p>
   </div>

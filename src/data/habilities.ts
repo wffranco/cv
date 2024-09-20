@@ -1,6 +1,6 @@
 import { formatExp } from "../helpers";
 
-export const habilities = {
+const habilities = {
   general: {
     title: 'General Skills',
     items: [
@@ -13,7 +13,7 @@ export const habilities = {
       { name: 'Lambda', lvl: 3, experience: .6 },
       { name: 'Docker', lvl: 4, experience: '2018-06' },
       { name: 'Docker Compose', lvl: 4, experience: '2018-10' },
-    ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+    ],
   },
   databases: {
     title: 'Databases',
@@ -23,7 +23,7 @@ export const habilities = {
       { name: 'Microsoft SQL Server', lvl: 3.5, experience: 1.1 },
       { name: 'Oracle Database', lvl: 3.5, experience: 2.1 },
       { name: 'MongoDB', lvl: 4, experience: 4.1 },
-    ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+    ],
   },
   languages: {
     title: 'Languages',
@@ -36,7 +36,7 @@ export const habilities = {
       { name: 'TypeScript', lvl: 4, experience: 2019 },
       { name: 'Go', lvl: 2.5, experience: 0.8 },
       { name: 'Python', lvl: 3, experience: 0.8 },
-    ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+    ],
   },
   frameworks: {
     title: 'Frameworks',
@@ -57,7 +57,7 @@ export const habilities = {
       { name: 'Material Design', lvl: 3, experience: 2.1 },
       { name: 'Tailwind CSS', lvl: 4, experience: 2018 },
       { name: 'Django', lvl: 3, experience: 0.8 },
-    ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+    ],
   },
   tools: {
     title: 'Tools',
@@ -68,7 +68,7 @@ export const habilities = {
       { name: 'Postman', lvl: 4, experience: '2018-06' },
       { name: 'SonarQube', lvl: 3, experience: 1.1 },
       { name: 'VSCode', lvl: 5, experience: 2016 },
-    ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+    ],
   },
   others: {
     title: 'Others',
@@ -85,6 +85,8 @@ export const habilities = {
       { name: 'CI/CD', lvl: 3, experience: 0.8 },
       { name: 'WebSockets', lvl: 3, experience: 2020 },
       { name: 'JWT', lvl: 3, experience: 2018 },
-    ].map(h => ({ ...h, experience: formatExp(h.experience) })),
+    ],
   },
 };
+
+export default habilities;

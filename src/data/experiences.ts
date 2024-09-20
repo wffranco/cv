@@ -1,6 +1,6 @@
-import { dateDiff, formatDate } from "../helpers";
+import { dateDiff } from "../helpers";
 
-interface Experience {
+export interface Experience {
   company: string;
   mode: string;
   location: string;
@@ -8,7 +8,6 @@ interface Experience {
   from: string;
   to?: string;
   description: string;
-  period?: string;
 }
 
 const experiences: Experience[] = [
@@ -67,6 +66,15 @@ const experiences: Experience[] = [
     description: 'Worked as a full-stack developer in different projects and teams. Worked with different technologies and frameworks, like Express, Laravel, Codeigniter, Vue.js, React, and Angular. I helped with a php migration for v5 to v7, helping with the movile app (Flutter), adding a new module (vue 3), and applying tests and code coverage (SonarQube) for a client in the United States.',
   },
   {
+    company: 'Rental Depot',
+    mode: 'Remote',
+    location: 'Medellín, Antioquia, Colombia',
+    position: 'Senior Software Developer',
+    from: '2020-11',
+    to: '2021-02',
+    description: 'Worked as a full-stack developer in a new project for a client in Mexico. I was responsible for the development of a new application (Laravel, Vue, TailwindCSS) for a rental company.',
+  },
+  {
     company: 'Postindustria',
     mode: 'Remote',
     location: 'Medellín, Antioquia, Colombia',
@@ -82,10 +90,6 @@ const experiences: Experience[] = [
     from: '2020-08',
     description: 'Working as a full-stack developer in a team of 3 people. I am responsible for the development of web applications for clients around the world, depending on my availability.',
   },
-].map(({ from, period, to, ...exp }: Experience): Experience => ({
-  ...exp,
-  from,
-  period: from ? `${formatDate(from)} - ${to ? formatDate(to) : 'Present'}` : period,
-})).sort((a, b) => dateDiff(b.from, a.from));
+].sort((a, b) => dateDiff(a.from, b.from));
 
 export default experiences;
