@@ -1,4 +1,4 @@
-import { formatExp } from "../helpers";
+import { formatExp } from "@/helpers";
 
 const info = {
   about: [

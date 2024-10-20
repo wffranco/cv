@@ -1,22 +1,22 @@
 ---
-import Layout from '../layouts/CV.astro';
+import Layout from '@/layouts/CV.astro';
 
-import Bar from '../components/Bar.astro';
-import Experience from '../components/Experience.astro';
-import Link from '../components/Link.astro';
+import Bar from '@/components/Bar.astro';
+import Experience from '@/components/Experience.astro';
+import Link from '@/components/Link.astro';
 
-import educations from '../data/education';
-import experiences from '../data/experiences';
-import habilities from '../data/habilities';
-import info from '../data/info';
-import languages from '../data/languages';
-import links from '../data/links';
-import { formatExp } from '../helpers';
+import educations from '@/data/education';
+import experiences from '@/data/experiences';
+import habilities from '@/data/habilities';
+import info from '@/data/info';
+import languages from '@/data/languages';
+import links from '@/data/links';
+import { formatExp } from '@/helpers';
 ---
 
 <Layout title="Curriculum Vitae - Willem Franco">
   <main class="mx-auto max-w-4xl print:max-w-none">
-    <div class="p-6 bg-white shadow-md print:shadow-none">
+    <div class="p-6 text-gray-800 bg-white shadow-md print:shadow-none">
       <div class="grid sm:grid-cols-[1fr_auto]">
         <div class="flex flex-col w-full bg-gray-900 text-white p-4 gap-6">
           <div class="break-inside-avoid">

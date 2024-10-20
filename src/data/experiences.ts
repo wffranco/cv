@@ -1,4 +1,4 @@
-import { dateDiff } from "../helpers";
+import { dateDiff } from "@/helpers";
 
 export interface Experience {
   company: string;

@@ -1,7 +1,7 @@
-import cv from './logos/cv.svg';
-import github from './logos/github.svg';
-import hackerrank from './logos/hackerrank.svg';
-import linkedin from './logos/linkedin.svg';
+import cv from '@/icons/cv.svg';
+import github from '@/icons/github.svg';
+import hackerrank from '@/icons/hackerrank.svg';
+import linkedin from '@/icons/linkedin.svg';
 
 const links = [
   { name: 'CV Page', url: 'https://wffranco.github.io/cv/', logo: cv.src },

@@ -1,0 +1,63 @@
+---
+import Menu from '@/components/Menu.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={title} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <script is:inline>
+      (() => {
+        const isDarkMedia = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+        function setTheme(isDark) {
+          document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+        }
+        setTheme(localStorage.theme ? localStorage.theme === 'dark' : isDarkMedia());
+
+        document.addEventListener('alpine:init', () => {
+          Alpine.store('theme', {
+            // Darm mode order: dark -> light -> system
+            dark: localStorage.theme ?? null,
+            get text() {
+              if (this.dark === 'light') {
+                return '🖥️ System Mode';
+              }
+              return this.dark === 'dark' ? '🌞 Light Mode' : '🌜 Dark Mode';
+            },
+            toggle() {
+              if (this.dark === 'light') {
+                this.dark = null;
+              } else {
+                this.dark = this.dark === 'dark' ? 'light' : 'dark';
+              }
+              if (this.dark) {
+                localStorage.theme = this.dark;
+                setTheme(this.dark === 'dark');
+              } else {
+                localStorage.removeItem('theme');
+                setTheme(isDarkMedia());
+              }
+            },
+          })
+        });
+      })();
+    </script>
+    <slot name="head" />
+	</head>
+	<body class="text-gray-800 bg-gray-100 dark:text-gray-100 dark:bg-gray-800 font-light antialiased">
+    <Menu />
+		<slot />
+	</body>
+</html>

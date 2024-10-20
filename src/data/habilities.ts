@@ -1,5 +1,3 @@
-import { formatExp } from "../helpers";
-
 const habilities = {
   general: {
     title: 'General Skills',

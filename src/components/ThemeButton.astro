@@ -1,0 +1,7 @@
+---
+const { class: c } = Astro.props;
+---
+
+<div x-data>
+  <button x-text="$store.theme.text" class:list={[c]} @click="$store.theme.toggle()" />
+</div>
