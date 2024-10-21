@@ -1,13 +1,14 @@
 ---
 import ThemeButton from "@/components/ThemeButton.astro";
 import burger from "@/icons/burger.svg";
+import Link from "./Link.astro";
 
-interface Link {
+interface TLink {
   href: string;
   text: string;
 }
 
-const links: Link[] = [
+const links: TLink[] = [
 ];
 ---
 <aside class="fixed top-0 left-0 text-gray-800 dark:text-gray-200 print:hidden group">
@@ -18,7 +19,7 @@ const links: Link[] = [
   <ul class="absolute left-0 top-full max-w-[100vw] bg-gray-100 dark:bg-gray-800 hidden group-[:has(button:focus-within)]:block hover:block whitespace-nowrap border border-gray-400">
     <li class="block"><ThemeButton class="block px-4 py-2" /></li>
     {links.map(({ href, text }) => (
-      <li><a href={href} class="block px-4 py-2">{text}</a></li>
+      <li><Link href={href} class="block px-4 py-2">{text}</Link></li>
     ))}
   </ul>
 </aside>

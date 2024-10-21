@@ -1,13 +1,8 @@
 ---
-interface Props {
-  url: string;
-  name: string;
-  logo: string;
-}
-
-const {logo, url, name} = Astro.props;
+const {href, ...others} = Astro.props;
+const url = href.startsWith('/') ? `${import.meta.env.BASE_URL}${href}` : href;
 ---
-<a href={url} title={name} class="flex print:inline gap-1" target="_blank">
-  <img src={logo} alt={name} class="h-6 print:h-3 inline">
-  <span class="underline hidden print:inline">{ name }</span>
+
+<a href={url} {...others}>
+  <slot />
 </a>
