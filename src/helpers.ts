@@ -36,3 +36,8 @@ export function getUTCDate(value?: string | number): Date {
   const [, year, month, day] = String(value).match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?$/) || [];
   return new Date(`${year || CurrentYear}-${month || '01'}-${day || '01'}T00:00:00Z`);
 }
+
+type ValueOf<T> = T extends () => infer R ? ValueOf<R> : T;
+export function valueOf<T>(input: T): ValueOf<T> {
+  return input instanceof Function ? valueOf(input()) : input;
+}

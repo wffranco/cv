@@ -1,0 +1,119 @@
+---
+import Item from './Item.astro';
+import type { Location } from './locations/types';
+import Mark from './Mark.astro';
+
+interface Props {
+  locations: Location[];
+}
+
+const { locations } = Astro.props;
+---
+<section
+  x-data="{ checked: [], hide: false, radio: '', showAll: false }"
+  x-init={`
+    checked = JSON.parse(localStorage.getItem('checked') || '[]');
+    $watch('checked', value => {
+      localStorage.setItem('checked', JSON.stringify(value));
+      console.log({hide,radio, included: checked.includes(radio)});
+      if (hide && checked.includes(radio)) {
+        radio = '';
+      }
+    });
+    radio = localStorage.getItem('radio') || '';
+    $watch('radio', value => {
+      console.log(value);
+      localStorage.setItem('radio', value);
+      document.querySelector('.location:checked')?.focus();
+    });
+    showAll = localStorage.getItem('showAll') == 'true';
+    $watch('showAll', value => localStorage.setItem('showAll', value));
+    $nextTick(() => { document.querySelector('.location:checked')?.focus(); });
+  `.trim().replace(/\s\s+/g, ' ')}
+  id="locations"
+  class="relative group/locations grid grid-cols-[auto_1fr] h-[95vh]"
+>
+  <nav class="relative h-full overflow-y-scroll border text-gray-200 bg-[#05a] w-70 rounded-l text-sm">
+    <ul role="list" class="grid">
+      <li class="sticky inset-y top-0 flex justify-evenly gap-2 bg-slate-900 p-2 z-10">
+        <input x-model="showAll" class="all" type="checkbox" title="Show All" />
+        <button class="px-2 py-1 border text-xs bg-slate-800" @click="checked = []">
+          Clear checboxes
+        </button>
+        <button class="px-2 py-1 border text-xs bg-slate-800" @click="radio = '';">
+          Clear radio
+        </button>
+        <button class="px-2 py-1 border text-xs bg-slate-800" @click="checked = []; radio = '';">
+          Clear all
+        </button>
+        <input x-model="hide" type="checkbox" class="hide" title="Hide completed">
+        <input type="checkbox" class="zoom" title="Allow Zoom" checked>
+      </li>
+      <li class="px-2 py-1 has-[.all:checked]/li:bg-sky-950">
+        <div class="flex">
+          <label class="cursor-pointer px-2 py-1 flex gap-2">
+            <input type="radio" name="location" value="" x-model="radio" />
+            <span>Full Map</span>
+          </label>
+        </div>
+      </li>
+      {locations.map((location, key) => (
+        <li class="group/li relative has-[.done:checked]/li:bg-[#050]">
+          <div class="">
+            <div class="absolute inset-0 pointer-events-none z-0 group-hover/li:bg-black/20 group-[:has(.location:checked)]/li:bg-white/30 group-[:has(.location:checked)]/li:animate-pulse" />
+            <div class="flex gap-2 px-2 py-1 items-center">
+              <div class="w-8 text-right">{key+1}.</div>
+              <Item x-model="checked" {...{location, locations}} pos={key+1} />
+            </div>
+          </div>
+        </li>
+        ))}
+      </li>
+    </ul>
+  </nav>
+  <div class="relative h-full aspect-square border overflow-hidden">
+    <div
+      id="map"
+      class="absolute inset-0 border border-red-300 bg-contain bg-no-repeat bg-center transition-transform"
+    >
+      {locations.map((location, key) => (
+        <Mark location={location} pos={key+1} />
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  section {
+    #map {
+      background-image: url('/cv/imgs/metroid-fusion-map.jpg');
+    }
+    &:has(.zoom:checked) {
+      &:has(.main-0:checked) #map {
+        @apply scale-[2.3] translate-x-[27%] translate-y-[-17%];
+      }
+      &:has(.srx-1:checked) #map {
+        @apply scale-[3] translate-x-[93%] translate-y-[83%];
+      }
+      &:has(.tro-2:checked) #map {
+        @apply scale-[3] translate-x-[1.5%] translate-y-[80%];
+      }
+      &:has(.pyr-3:checked) #map {
+        @apply scale-[2.6] translate-x-[-71%] translate-y-[80%];
+      }
+      &:has(.aqa-4:checked) #map {
+        @apply scale-[2.5] translate-x-[-66%] translate-y-[-9%];
+      }
+      &:has(.arc-5:checked) #map {
+        @apply scale-[2.4] translate-x-[12%] translate-y-[-91%];
+      }
+      &:has(.noc-6:checked) #map {
+        @apply scale-[3] translate-x-[-90%] translate-y-[-96%];
+      }
+    }
+    &:has(.hide:checked) {
+      nav > ul > li:has(.done:checked) {
+        @apply hidden;
+      }
+    }
+  }
+</style>
