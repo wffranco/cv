@@ -17,40 +17,9 @@ const { title } = Astro.props;
   <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
-  <script is:inline>
+  <script>
     (() => {
-      const isDarkMedia = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
-      function setTheme(isDark) {
-        document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
-      }
-      setTheme(localStorage.theme ? localStorage.theme === 'dark' : isDarkMedia());
-
-      document.addEventListener('alpine:init', () => {
-        Alpine.store('theme', {
-          // Darm mode order: dark -> light -> system
-          dark: localStorage.theme ?? null,
-          get text() {
-            if (this.dark === 'light') {
-              return '🖥️ System Mode';
-            }
-            return this.dark === 'dark' ? '🌞 Light Mode' : '🌜 Dark Mode';
-          },
-          toggle() {
-            if (this.dark === 'light') {
-              this.dark = null;
-            } else {
-              this.dark = this.dark === 'dark' ? 'light' : 'dark';
-            }
-            if (this.dark) {
-              localStorage.theme = this.dark;
-              setTheme(this.dark === 'dark');
-            } else {
-              localStorage.removeItem('theme');
-              setTheme(isDarkMedia());
-            }
-          },
-        })
-      });
+      document.documentElement.dataset.theme = localStorage.getItem('theme') || 'system';
     })();
   </script>
   <slot name="head" />
