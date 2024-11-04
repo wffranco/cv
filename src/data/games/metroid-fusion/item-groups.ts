@@ -1,4 +1,18 @@
-import type { Location, Locations } from "./types";
+import type { Location as L, Locations as LS } from "@/components/games/metroid-maps/Map.astro";
+
+export const sectors = [
+  'main-0',
+  'srx-1',
+  'tro-2',
+  'pyr-3',
+  'aqa-4',
+  'arc-5',
+  'noc-6',
+] as const;
+export type Sector = typeof sectors[number];
+
+export type Location = L<Sector>;
+export type Locations<V extends Location> = LS<Sector, V>;
 
 //---- Admosferic Stavilizer ----//
 
@@ -214,11 +228,11 @@ export const nr = {
 //---- Others ----//
 
 export const o = {
+  oS1: {id: 'oS1', sector: 'main-0', x: 46.75, y: 57, name: 'Ship - Start'},
   oE: {id: 'oE', sector: 'main-0', x: 28.2, y: 50.9, name: 'Exploring'},
   oHd: {id: 'oHd', sector: 'main-0', x: 29.9, y: 40, name: 'Habitation Deck', depends: 'sl2'},
   oOr: {id: 'oOr', sector: 'main-0', x: 39, y: 36.9, name: 'Operation Room', depends: 'hSa'},
   oPc: {id: 'oPc', sector: 'aqa-4', x: 57.4, y: 49.8, name: 'Pump Control', status: 'important', depends: 'hSb'},
-  oS1: {id: 'oS1', sector: 'main-0', x: 46.75, y: 57, name: 'Ship - Start'},
   oS2: {id: 'oS2', sector: 'main-0', x: 46.75, y: 57, name: 'Ship - Update', depends: 'nr21'},
 } satisfies Locations<Location>;
 

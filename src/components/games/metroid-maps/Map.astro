@@ -1,39 +1,52 @@
 ---
 import Item from './Item.astro';
-import type { Location } from './locations/types';
 import Mark from './Mark.astro';
 
 interface Props {
   locations: Location[];
+  markSize?: number;
 }
 
-const { locations } = Astro.props;
+type LocationId = string;
+
+export interface Location<S = string> {
+  id: LocationId;
+  sector: S;
+  depends?: LocationId | LocationId[];
+  name: string;
+  status?: 'important' | 'urgent' | 'hard' | 'careful';
+  x: number;
+  y: number;
+  avoid?: number[];
+}
+
+export type Locations<S, V extends Location<S>> = Record<string, V>;
+
+const { locations, markSize } = Astro.props;
 ---
 <section
   x-data="{ checked: [], hide: false, radio: '', showAll: false }"
   x-init={`
-    checked = JSON.parse(localStorage.getItem('checked') || '[]');
+    checked = JSON.parse(localStorage.getItem('sm-checked') || '[]');
     $watch('checked', value => {
-      localStorage.setItem('checked', JSON.stringify(value));
-      console.log({hide,radio, included: checked.includes(radio)});
+      localStorage.setItem('sm-checked', JSON.stringify(value));
       if (hide && checked.includes(radio)) {
         radio = '';
       }
     });
-    radio = localStorage.getItem('radio') || '';
+    radio = localStorage.getItem('sm-radio') || '';
     $watch('radio', value => {
-      console.log(value);
-      localStorage.setItem('radio', value);
+      localStorage.setItem('sm-radio', value);
       document.querySelector('.location:checked')?.focus();
     });
-    showAll = localStorage.getItem('showAll') == 'true';
-    $watch('showAll', value => localStorage.setItem('showAll', value));
+    showAll = localStorage.getItem('sm-show-all') == 'true';
+    $watch('showAll', value => localStorage.setItem('sm-show-all', value));
     $nextTick(() => { document.querySelector('.location:checked')?.focus(); });
   `.trim().replace(/\s\s+/g, ' ')}
   id="locations"
   class="relative group/locations grid grid-cols-[auto_1fr] h-[95vh]"
 >
-  <nav class="relative h-full overflow-y-scroll border text-gray-200 bg-[#05a] w-70 rounded-l text-sm">
+  <nav class="relative h-full overflow-y-scroll border text-gray-200 bg-blue-950 w-70 rounded-l text-sm">
     <ul role="list" class="grid">
       <li class="sticky inset-y top-0 flex justify-evenly gap-2 bg-slate-900 p-2 z-10">
         <input x-model="showAll" class="all" type="checkbox" title="Show All" />
@@ -58,7 +71,7 @@ const { locations } = Astro.props;
         </div>
       </li>
       {locations.map((location, key) => (
-        <li class="group/li relative has-[.done:checked]/li:bg-[#050]">
+        <li class="group/li relative has-[.done:checked]/li:bg-green-950">
           <div class="">
             <div class="absolute inset-0 pointer-events-none z-0 group-hover/li:bg-black/20 group-[:has(.location:checked)]/li:bg-white/30 group-[:has(.location:checked)]/li:animate-pulse" />
             <div class="flex gap-2 px-2 py-1 items-center">
@@ -74,46 +87,11 @@ const { locations } = Astro.props;
   <div class="relative h-full aspect-square border overflow-hidden">
     <div
       id="map"
-      class="absolute inset-0 border border-red-300 bg-contain bg-no-repeat bg-center transition-transform"
+      class="absolute top-0 left-0 h-[200%] w-[200%] border border-red-300 bg-contain bg-no-repeat bg-center transition-transform"
     >
       {locations.map((location, key) => (
-        <Mark location={location} pos={key+1} />
+        <Mark location={location} pos={key+1} size={markSize} />
       ))}
     </div>
   </div>
 </section>
-<style>
-  section {
-    #map {
-      background-image: url('/cv/imgs/metroid-fusion-map.jpg');
-    }
-    &:has(.zoom:checked) {
-      &:has(.main-0:checked) #map {
-        @apply scale-[2.3] translate-x-[27%] translate-y-[-17%];
-      }
-      &:has(.srx-1:checked) #map {
-        @apply scale-[3] translate-x-[93%] translate-y-[83%];
-      }
-      &:has(.tro-2:checked) #map {
-        @apply scale-[3] translate-x-[1.5%] translate-y-[80%];
-      }
-      &:has(.pyr-3:checked) #map {
-        @apply scale-[2.6] translate-x-[-71%] translate-y-[80%];
-      }
-      &:has(.aqa-4:checked) #map {
-        @apply scale-[2.5] translate-x-[-66%] translate-y-[-9%];
-      }
-      &:has(.arc-5:checked) #map {
-        @apply scale-[2.4] translate-x-[12%] translate-y-[-91%];
-      }
-      &:has(.noc-6:checked) #map {
-        @apply scale-[3] translate-x-[-90%] translate-y-[-96%];
-      }
-    }
-    &:has(.hide:checked) {
-      nav > ul > li:has(.done:checked) {
-        @apply hidden;
-      }
-    }
-  }
-</style>

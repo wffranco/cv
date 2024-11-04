@@ -1,5 +1,4 @@
-import { sectors, type Location } from './types';
-import { as, d, dr, et, h, m, nr, o, pb, sl } from './groups';
+import { as, d, dr, et, h, m, nr, o, pb, sectors, sl, type Location } from './item-groups';
 
 export type Order = 'sectors' | undefined;
 

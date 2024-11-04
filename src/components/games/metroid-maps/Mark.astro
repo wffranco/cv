@@ -1,14 +1,15 @@
 ---
-import { type Location } from "./locations/types";
+import type { Location } from "./Map.astro";
 
 interface Props {
   class?: ClassList;
   location: Location;
   pos: number;
+  size?: number;
 }
 
-const { class: c, location, pos, ...rest } = Astro.props;
-const { id, x, y } = location;
+const { class: c, location, pos, size, ...rest } = Astro.props;
+const { id, name, x, y } = location;
 
 const styles = [
   `group-[:has(#r-${pos}:checked)]/locations:block`,
@@ -18,8 +19,8 @@ const styles = [
 <label for={`r-${pos}`}>
   <i
     class:list={["location", c, "hidden group-[:has(.all:checked)]/locations:block", styles]}
-    style={{ left: `${x}%`, top: `${y}%`, width: "2%" }}
-    title={`${id||''}`}
+    style={{ left: `${x}%`, top: `${y}%`, width: `${size||1}%` }}
+    title={`${id} - ${name}`}
     {...rest}
     @dblclick={`$refs.ch${pos}.click()`}
   >
@@ -33,7 +34,7 @@ const styles = [
 i.location {
   @apply absolute aspect-square;
   > .arrow {
-    @apply absolute w-[60%] aspect-square bg-current left-[20%] bottom-full z-10;
+    @apply absolute w-[70%] aspect-square bg-current left-[15%] bottom-full z-10;
     @apply animate-bounce text-red-600;
     mask: url('/cv/imgs/arrow-down.svg') no-repeat center;
   }
