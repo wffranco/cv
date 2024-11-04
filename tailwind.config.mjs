@@ -10,6 +10,7 @@ export default {
       fontFamily: {
         sans: ['Lato', 'sans-serif'],
         bebas: ['Bebas Neue', 'sans-serif'],
+        oswald: ['Oswald', 'sans-serif'],
       },
     },
   },
