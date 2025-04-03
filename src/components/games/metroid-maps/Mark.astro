@@ -24,7 +24,7 @@ const styles = [
     {...rest}
     @dblclick={`$refs.ch${pos}.click()`}
   >
-    <i class:list={["arrow hidden pointer-events-none", styles[0]]} />
+    <i class:list={["arrow hidden animate-bounce text-red-600 pointer-events-none", styles[0]]} />
     <i class:list={["square text-white animate-ping hidden pointer-events-none", styles[0]]} />
     <i class:list={["square text-yellow-300 hover:text-green-300", styles]} />
   </i>
@@ -34,12 +34,11 @@ const styles = [
 i.location {
   @apply absolute aspect-square;
   > .arrow {
-    @apply absolute w-[70%] aspect-square bg-current left-[15%] bottom-full z-10;
-    @apply animate-bounce text-red-600;
+    /* @apply absolute w-[70%] aspect-square bg-current left-[15%] bottom-full z-10; */
     mask: url('/cv/imgs/arrow-down.svg') no-repeat center;
   }
   > .square {
-    @apply absolute w-full aspect-square bg-current;
+    /* @apply absolute w-full aspect-square bg-current; */
     mask: url('/cv/imgs/square-mid-filled.svg') no-repeat center;
     inset: 0 auto auto 0;
   }
