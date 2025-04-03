@@ -1,8 +1,27 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(
+  [data-theme="dark"], [data-system="dark"][data-theme="system"],
+  [data-theme="dark"] *, [data-system="dark"][data-theme="system"] *
+));
+
+@theme {
+  --font-sans: 'Lato', 'sans-serif';
+  --font-bebas: 'Bebas Neue', 'sans-serif';
+  --font-oswald: 'Oswald', 'sans-serif';
+}
 
 @media print {
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
+}
+
+.prose {
+  @apply prose-gray;
+}
+.prose.prose-sm p {
+  @apply my-2;
 }
