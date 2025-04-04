@@ -40,11 +40,11 @@ import { formatExp } from '@/helpers';
           ))}
         </div>
       </div>
-      <div class="break-inside-avoid print:hidden print:has-[input:checked]:block">
+      <div class="break-inside-avoid has-[input:not(:checked)]:bg-red-900 print:hidden print:has-[input:checked]:block">
         <h3 class="text-lg font-bebas">
           <label class="accent-gray-900 hover:accent-white" title="Show salary expectation on print">
             <input type="checkbox" class="print:hidden" checked />
-            Salary Expectation
+            <span class="[label>input:not(:checked)_+_&]:line-through">Salary Expectation</span>
           </label>
         </h3>
         <div class="flex gap-1 items-center">
