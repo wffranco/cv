@@ -37,7 +37,7 @@ export function getUTCDate(value?: string | number): Date {
   return new Date(`${year || CurrentYear}-${month || '01'}-${day || '01'}T00:00:00Z`);
 }
 
-type ValueOf<T> = T extends () => infer R ? ValueOf<R> : T;
-export function valueOf<T>(input: T): ValueOf<T> {
+type RecursiveFn<T> = () => T | RecursiveFn<T>;
+export function valueOf<T>(input: RecursiveFn<T> | T): T {
   return input instanceof Function ? valueOf(input()) : input;
 }
