@@ -32,8 +32,8 @@ const habilities = {
       { name: 'JavaScript', lvl: 5, experience: '2010-09' },
       { name: 'Node.js', lvl: 4, experience: 2016 },
       { name: 'TypeScript', lvl: 4, experience: 2019 },
-      { name: 'Go', lvl: 2.5, experience: 0.8 },
-      { name: 'Python', lvl: 3, experience: 0.8 },
+      { name: 'Go', lvl: 2.5, experience: 1 },
+      { name: 'Python', lvl: 3, experience: 2.1 },
     ],
   },
   frameworks: {
