@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(
+  [data-theme="dark"], [data-system="dark"][data-theme="system"],
+  [data-theme="dark"] *, [data-system="dark"][data-theme="system"] *
+));
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@import './components.css';

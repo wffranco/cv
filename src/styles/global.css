@@ -1,23 +1,21 @@
-@import 'tailwindcss';
-@plugin '@tailwindcss/typography';
-
-@custom-variant dark (&:where(
-  [data-theme="dark"], [data-system="dark"][data-theme="system"],
-  [data-theme="dark"] *, [data-system="dark"][data-theme="system"] *
-));
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap'); */
+@import './tailwind.css';
 
 @theme {
-  --font-sans: 'Lato', 'sans-serif';
-  --font-bebas: 'Bebas Neue', 'sans-serif';
-  --font-oswald: 'Oswald', 'sans-serif';
+  --font-sans: 'Open Sans', 'sans-serif';
+  /* --font-lato: 'Lato', 'sans-serif'; */
+  /* --font-bebas: 'Bebas Neue', 'sans-serif'; */
+  /* --font-oswald: 'Oswald', 'sans-serif'; */
 }
 
-@media print {
-  body {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-}
+/* body {
+  font-family: 'Open Sans', 'sans-serif';
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wgth" 100;
+} */
 
 .prose {
   @apply prose-gray;

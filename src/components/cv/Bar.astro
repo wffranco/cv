@@ -3,13 +3,14 @@ interface Props {
   bg: string;
   color: string;
   lvl: number;
+  stretch?: boolean;
 }
 const sizes = ['w-0', 'w-1/5', 'w-2/5', 'w-3/5', 'w-4/5', 'w-full'];
 
-const { bg, color, lvl } = Astro.props;
+const { bg, color, lvl, stretch } = Astro.props;
 ---
 <div>
-  <div class="text-sm leading-none mb-1"><slot /></div>
+  <div class:list={['text-sm leading-none mb-1', {'font-stretch-condensed': stretch}]}><slot /></div>
   <div class:list={['h-2 print:h-1 w-full', bg]}>
     <div class:list={['h-full', sizes[lvl], color]}></div>
   </div>

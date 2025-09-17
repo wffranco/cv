@@ -10,7 +10,7 @@ export interface Experience {
   description: string;
 }
 
-const experiences: Experience[] = [
+export const experiences: Experience[] = [
   {
     company: 'Postindustria',
     mode: 'Remote',
@@ -82,14 +82,6 @@ const experiences: Experience[] = [
     to: '2015-06',
     from: '2010-07',
     description: 'Full-stack developer role with diverse responsibilities. Developed social network platform for US client (PHP, jQuery). Created mobile application using Cordova/PhoneGap. Managed AWS server infrastructure. Built warehouse management and e-commerce solutions.',
-  },
-  {
-    company: 'Freelancer',
-    mode: 'Part Time - On Demand',
-    location: 'Medellín, Antioquia, Colombia',
-    position: 'Senior Software Engineer & Technical Consultant',
-    from: '2020-08',
-    description: 'Independent consultant providing technical leadership and development services. Design and develop custom web solutions for international clients, provide technical architecture consultation and best practices guidance, implement modern development workflows and quality assurance processes. Collaborate with distributed teams across different time zones.',
   },
 ].sort((a, b) => dateDiff(a.from, b.from));
 

@@ -1,5 +1,5 @@
 ---
-import Layout from '@/layouts/CV.astro';
+import Layout from '@/layouts/Layout.astro';
 
 import Bar from '@/components/cv/Bar.astro';
 import Experience from '@/components/cv/Experience.astro';
@@ -17,23 +17,23 @@ import { formatExp } from '@/helpers';
 <Layout title="Curriculum Vitae - Willem Franco">
   <main class="grid sm:grid-cols-[1fr_auto] mx-auto max-w-4xl print:max-w-none p-6 text-gray-800 bg-white shadow-md print:shadow-none">
     <aside class="flex flex-col w-full bg-gray-900 text-white p-4 gap-6">
-      <div class="break-inside-avoid">
-        <h3 class="text-3xl font-bebas">{ info.name }</h3>
+      <div class="break-inside-avoid grid gap-2">
+        <h3 class="name">{ info.name }</h3>
         <div class="grid grid-cols-[auto_1fr] gap-2 text-sm">
           <span>📍</span>
           <span>{ info.location }</span>
           <span class="hidden print:inline">📱</span>
-          <a href={`tel:${info.phone}`} class="hidden print:inline underline">{ info.phone }</a>
+          <a href={`tel:${info.phone}`} class="hidden print:inline underline font-stretch-condensed">{ info.phone }</a>
           <span class="hidden print:inline">✉️</span>
-          <a href={`mailto:${info.email}`} class="hidden print:inline underline">{ info.email }</a>
+          <a href={`mailto:${info.email}`} class="hidden print:inline underline font-stretch-condensed">{ info.email }</a>
         </div>
       </div>
       <div class="break-inside-avoid">
-        <h3 class="text-lg font-bebas">Nationalities</h3>
+        <h3 class="sub-title">Nationalities</h3>
         {info.nationalities.map(nationality => <div>{ nationality }</div>)}
       </div>
       <div class="break-inside-avoid">
-        <h3 class="text-lg font-bebas">Languages</h3>
+        <h3 class="sub-title">Languages</h3>
         <div class="flex flex-col gap-1">
           {languages.map(({ lvl, name }) => (
             <Bar bg="bg-gray-700" color="bg-white" lvl={lvl}>{ name }</Bar>
@@ -41,7 +41,7 @@ import { formatExp } from '@/helpers';
         </div>
       </div>
       <div class="break-inside-avoid has-[input:not(:checked)]:bg-red-900 print:hidden print:has-[input:checked]:block">
-        <h3 class="text-lg font-bebas">
+        <h3 class="sub-title">
           <label class="accent-gray-900 hover:accent-white" title="Show salary expectation on print">
             <input type="checkbox" class="print:hidden" checked />
             <span class="[label>input:not(:checked)_+_&]:line-through">Salary Expectation</span>
@@ -54,24 +54,24 @@ import { formatExp } from '@/helpers';
         </div>
       </div>
       <div class="break-inside-avoid">
-        <h3 class="text-lg font-bebas">Links</h3>
+        <h3 class="sub-title">Links</h3>
         <ul class="print:list-disc print:list-inside flex print:flex-col gap-2">
           {links.map((link) => <li><Link {...link} /></li>)}
         </ul>
       </div>
       <div class="break-inside-avoid">
-        <h3 class="text-xl font-bebas">What I expect from a job</h3>
+        <h3 class="sub-title">What I expect from a job</h3>
         <div>
           {info.expectations.map(paragraph => <p class="text-sm print:text-[10px]">{ paragraph }</p>)}
         </div>
       </div>
-      <div class="break-inside-avoid">
-        <h3 class="text-lg font-bebas">Education</h3>
+      <div class="break-inside-avoid grid gap-2">
+        <h3 class="sub-title">Education</h3>
         {educations.map(education => (
           <div>
-            <p class="font-bold">{ education.institution }</p>
+            <p class="font-bold font-stretch-condensed italic">{ education.institution }</p>
             <p>{ `${education.location} - ${education.date}` }</p>
-            <p class="font-bold">{ education.degree }</p>
+            <p class="font-bold font-stretch-condensed">{ education.degree }</p>
             <p>{ education.description }</p>
           </div>
         ))}
@@ -79,25 +79,32 @@ import { formatExp } from '@/helpers';
     </aside>
     <section class="grid gap-6 p-4">
       <div>
-        <h3 class="text-xl font-bebas">About Me</h3>
-        <div class="prose prose-sm print:columns-2 min-w-full">
+        <h3 class="title bordered">About Me</h3>
+        <div class="prose prose-sm prose-p:font-normal print:columns-2 min-w-full">
           {info.about.map(paragraph => <p>{ paragraph }</p>)}
         </div>
       </div>
       <div>
-        <h3 class="text-xl font-bebas border-b-2 border-gray-400">Experiences</h3>
+        <h3 class="title bordered">Independent Consulting & Project Work</h3>
+        <div class="flew flex-col mt-4">
+          <h4 class="text-base font-bold">{info.independent.position}</h4>
+          <p class="prose prose-sm min-w-full">{info.independent.description}</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="title bordered">Experiences</h3>
         <div class="flew flex-col mt-4">
           {experiences.map(experience => <Experience {...experience} />)}
         </div>
       </div>
       <div class="flex flex-col gap-3">
-        <h3 class="text-2xl font-bebas border-b-2 border-gray-400">Habilities</h3>
+        <h3 class="title bordered">Habilities</h3>
         {Object.values(habilities).map(({title, items}) => (
-          <div class="break-inside-avoid">
-            <h4 class="text-lg print:text-base font-bebas">{ title }</h4>
-            <div class="grid grid-cols-2 gap-2 print:gap-y-1">
+          <div class="break-inside-avoid grid gap-1">
+            <h4 class="print:text-base sub-title">{ title }</h4>
+            <div class="grid grid-cols-3 gap-2 print:gap-y-1">
               {items.map(({lvl, name, experience}) => (
-                <Bar bg="bg-gray-300" color="bg-gray-900" lvl={lvl}>
+                <Bar bg="bg-gray-300" color="bg-gray-900" lvl={lvl} stretch>
                   <span class="font-medium">{ name }</span>
                   <span class="text-xs text-nowrap">{ experience ? `(${formatExp(experience)})` : '' }</span>
                 </Bar>

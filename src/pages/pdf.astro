@@ -1,0 +1,136 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { generateLatex } from '@/helpers/latex';
+
+const latexContent = generateLatex();
+---
+
+<Layout title="CV - PDF Preview">
+  <div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">CV PDF Preview</h1>
+
+    <div class="flex gap-4 mb-4">
+      <button
+        id="downloadPDF"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        disabled
+      >
+        Download PDF
+      </button>
+      <a
+        href="/cv/latex"
+        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded inline-block"
+      >
+        Back to LaTeX
+      </a>
+    </div>
+
+    <div id="preview" class="bg-white shadow-lg rounded min-h-screen">
+      <div id="loading" class="flex items-center justify-center p-8">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+        <span class="ml-2">Compiling LaTeX...</span>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { Generator } from 'latex.js';
+
+  async function renderLatex() {
+    try {
+      const content = document.querySelector('#latexContent')?.textContent || '';
+      const generator = new Generator({ hyphenate: false });
+      const html = await generator.parse(content);
+
+      // Reemplazar el indicador de carga con el contenido
+      const preview = document.querySelector('#preview');
+      if (preview) {
+        preview.innerHTML = '';
+        preview.appendChild(html);
+      }
+
+      // Habilitar el botón de descarga
+      const downloadBtn = document.querySelector('#downloadPDF');
+      if (downloadBtn) {
+        downloadBtn.disabled = false;
+        downloadBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    } catch (error) {
+      console.error('Error compiling LaTeX:', error);
+      const preview = document.querySelector('#preview');
+      if (preview) {
+        preview.innerHTML = `
+          <div class="p-4">
+            <div class="text-red-600 font-bold mb-2">Error compiling LaTeX</div>
+            <pre class="bg-red-50 p-4 rounded text-sm overflow-auto">${error.message}</pre>
+          </div>
+        `;
+      }
+    }
+  }
+
+  // Iniciar la renderización cuando la página cargue
+  window.addEventListener('load', renderLatex);
+</script>
+
+<div id="latexContent" style="display: none">{latexContent}</div>
+
+<style>
+  /* Estilos para el documento LaTeX renderizado */
+  :global(.latex-container) {
+    padding: 2rem;
+    font-size: 12pt;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  :global(.latex-container h1) {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 1em 0;
+  }
+
+  :global(.latex-container h2) {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.8em 0;
+  }
+
+  :global(.latex-container .itemize) {
+    margin: 0.5em 0 0.5em 1.5em;
+    list-style-type: disc;
+  }
+
+  :global(.latex-container .item) {
+    position: relative;
+    margin: 0.3em 0;
+    padding-left: 0.5em;
+  }
+
+  :global(.latex-container table) {
+    width: 100%;
+    margin: 1em 0;
+    border-collapse: collapse;
+  }
+
+  :global(.latex-container td) {
+    padding: 0.3em;
+    vertical-align: top;
+  }
+
+  :global(.latex-container .textbf) {
+    font-weight: bold;
+  }
+
+  :global(.latex-container .textit) {
+    font-style: italic;
+  }
+
+  /* Estilos específicos para el CV */
+  :global(.latex-container center) {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+</style>

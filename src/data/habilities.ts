@@ -1,4 +1,15 @@
-const habilities = {
+export interface Hability {
+  name: string;
+  lvl: number; // 1 to 5
+  experience: number | string; // in years, or since YYYY, or since YYYY-MM
+}
+
+export interface HabilitySection {
+  title: string;
+  items: Hability[];
+}
+
+export const habilities = {
   general: {
     title: 'General Skills',
     items: [
@@ -85,6 +96,6 @@ const habilities = {
       { name: 'JWT', lvl: 3, experience: 2018 },
     ],
   },
-};
+} as const satisfies Record<string, HabilitySection>;
 
 export default habilities;

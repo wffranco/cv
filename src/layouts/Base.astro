@@ -16,15 +16,18 @@ const { title } = Astro.props;
   <meta name="description" content={title} />
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <slot name="head" />
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
   <script>
-    (() => {
-      document.documentElement.dataset.system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.dataset.theme = localStorage.getItem('theme') || 'system';
-    })();
+    ((dataset) => {
+      dataset.system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      dataset.theme = localStorage.getItem('theme') || 'system';
+    })(document.documentElement.dataset);
   </script>
-  <slot name="head" />
+  <slot name="scripts" />
 </head>
 <body class="text-gray-800 bg-gray-100 dark:text-gray-100 dark:bg-gray-800 font-light antialiased min-h-screen">
   <Menu />

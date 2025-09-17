@@ -1,13 +1,12 @@
 import { formatExp } from "@/helpers";
 
-const info = {
+type Salary = [period: 'hour' | 'month' | 'year', amount: number];
+
+export const info = {
   about: [
-    `Web developer with ${formatExp('2010-09')} of experience. I am a proactive person, always looking for new challenges and learning new technologies.`,
-    'I can implement complex ideas and developing high-level applications, having a diverse experience in different projects, including (but not limited to) social networks, hotel industry, and AML (Anti-Money Laundering) systems.',
-    'I have a strong knowledge of PHP, JavaScript, and their frameworks, as well as experience with databases, cloud services, and other technologies.',
-    'I was a team leader in some projects, and I have experience supporting on all stages of the software development life cycle.',
-    'I am a team player, with good communication skills, trying to find the best solution for the problems that we face, always willing to help my teammates and sharing my knowledge or learning from them.',
-    'Located in Colombia, but open to relocation.'
+    `Software Engineer and Technical Consultant with ${formatExp('2010-09')} of experience, delivering tailored web solutions to international clients. Skilled in guiding technical architecture, implementing modern workflows, and fostering long-term client partnerships. Proven ability to collaborate effectively with distributed teams across multiple time zones.`,
+    'Specialized in modern JavaScript/TypeScript ecosystems (Vue.js, React, Angular) and PHP frameworks (Laravel, CodeIgniter), with hands-on experience in technical migrations, performance optimization, and solution architecture. Industry exposure spans FinTech, Government, and SaaS platforms.',
+    'Demonstrated success in reducing development cycles while maintaining high code quality through CI/CD pipelines and test-driven development practices.'
   ],
   expectations: [
     'I\'m constantly improving my stack or learning new technologies, so I look for a place where that effort is valued, with opportunities for professional growth, a positive work environment and a competitive salary.',
@@ -24,7 +23,13 @@ const info = {
     ['month', 4000],
     ['hour', 23],
     ['year', 48000],
-  ],
+  ] as Salary[],
+  independent: {
+    mode: 'Part Time - On Demand',
+    location: 'Medellín, Antioquia, Colombia',
+    position: 'Senior Software Engineer & Technical Consultant',
+    description: 'Independent consultant providing technical leadership and development services. Design and develop custom web solutions for international clients, provide technical architecture consultation and best practices guidance, implement modern development workflows and quality assurance processes. Collaborate with distributed teams across different time zones.',
+  },
 };
 
 export default info;

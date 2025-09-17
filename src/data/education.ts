@@ -1,4 +1,4 @@
-interface Education {
+export interface Education {
   degree: string;
   description: string;
   institution: string;
@@ -6,7 +6,7 @@ interface Education {
   date: string | number;
 }
 
-const educations: Education[] = [
+export const educations: Education[] = [
   {
     degree: 'Higher University Technician in Computer Science (IT Development)',
     description: 'Software Developer & Database Manager',

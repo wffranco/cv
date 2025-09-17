@@ -1,0 +1,17 @@
+@layer components {
+  .name {
+    @apply text-3xl font-bold font-stretch-condensed text-nowrap;
+  }
+  .title {
+    @apply text-2xl font-bold;
+  }
+  .sub-title {
+    @apply text-xl font-semibold;
+  }
+  :where(.title, .sub-title) {
+    @apply font-stretch-condensed;
+    &.bordered {
+      @apply border-b-2 border-gray-400;
+    }
+  }
+}
