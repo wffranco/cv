@@ -7,7 +7,7 @@ export interface Experience {
   position: string;
   from: string;
   to?: string;
-  description: string;
+  description: string | string[];
 }
 
 export const experiences: Experience[] = [

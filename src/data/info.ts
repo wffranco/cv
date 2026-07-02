@@ -1,4 +1,11 @@
 import { formatExp } from "@/helpers";
+import type { Experience } from "./experiences";
+
+export type Independent = Omit<Experience, "company" | "from" | "to"> & {
+  company?: never;
+  from?: never;
+  to?: never;
+};
 
 type Salary = [period: 'hour' | 'month' | 'year', amount: number];
 
@@ -29,7 +36,7 @@ export const info = {
     location: 'Medellín, Antioquia, Colombia',
     position: 'Senior Software Engineer & Technical Consultant',
     description: 'Independent consultant providing technical leadership and development services. Design and develop custom web solutions for international clients, provide technical architecture consultation and best practices guidance, implement modern development workflows and quality assurance processes. Collaborate with distributed teams across different time zones.',
-  },
+  } satisfies Independent,
 };
 
 export default info;

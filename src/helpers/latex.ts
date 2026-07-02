@@ -1,11 +1,12 @@
 import { experiences, type Experience } from '@/data/experiences';
 import { educations, type Education } from '@/data/education';
 import habilities from '@/data/habilities';
-import info from '@/data/info';
+import info, { type Independent } from '@/data/info';
 import languages from '@/data/languages';
+import { wrapper } from './arrays';
 
-function generateLatexPreamble() {
-  return `\\documentclass[11pt,a4paper]{article}
+const generateLatexPreamble = () => `
+\\documentclass[11pt,a4paper]{article}
 \\usepackage[utf8]{inputenc}
 \\usepackage{geometry}
 \\usepackage[hidelinks]{hyperref}
@@ -37,11 +38,10 @@ function generateLatexPreamble() {
 
 \\newcommand{\\skill}[2]{#1 & #2 \\\\}
 
-\\begin{document}`;
-}
+\\begin{document}
+`.trim();
 
-function generateHeader() {
-  return `
+const generateHeader = () => `
 \\begin{center}
   {\\Huge\\textbf{Willem Franco}}\\\\[0.3em]
   {\\Large\\textcolor{gray}{Senior Full-Stack Software Engineer}}\\\\[0.5em]
@@ -50,15 +50,16 @@ function generateHeader() {
   \\faEnvelope\\ willemffrancoc@gmail.com \\\\
   \\faGithub\\ \\href{https://github.com/wffranco}{github.com/wffranco} \\\\
   \\faLinkedin\\ \\href{https://linkedin.com/in/wffranco}{linkedin.com/in/wffranco}
-\\end{center}`;
-}
+\\end{center}`.trim();
 
 function generateSkillsSection() {
   const sections = [
     { title: 'Programming Languages', items: habilities.languages.items },
     { title: 'Frameworks & Libraries', items: habilities.frameworks.items },
-    { title: 'Frontend Technologies', items: habilities.general.items.filter(item =>
-      ['Front-End Development'].includes(item.name)) },
+    {
+      title: 'Frontend Technologies', items: habilities.general.items.filter(item =>
+        ['Front-End Development'].includes(item.name))
+    },
     { title: 'Databases', items: habilities.databases.items },
     { title: 'DevOps & Tools', items: habilities.tools.items },
     { title: 'Methodologies & Concepts', items: habilities.others.items },
@@ -68,7 +69,8 @@ function generateSkillsSection() {
 \\subsection*{${section.title}}
 \\begin{tabularx}{\\textwidth}{X r}
 ${section.items.map(item => `\\skill{${item.name}}{${formatExperience(item.experience)}}`).join('\n')}
-\\end{tabularx}`).join('\n');
+\\end{tabularx}
+`.trim()).join('\n');
 }
 
 function formatExperience(exp: string | number): string {
@@ -84,17 +86,19 @@ function formatExperience(exp: string | number): string {
   return `${exp} years${exp === 1 ? '' : 's'}`;
 }
 
-function generateExperienceSection(exp: Experience) {
-  const dateRange = exp.to ? `${exp.from.split('-')[0]} - ${exp.to.split('-')[0]}` : `${exp.from.split('-')[0]} - Present`;
-
-  return `
-\\noindent\\textbf{${exp.position}} \\hfill ${dateRange}\\\\
-\\noindent\\textit{${exp.company}} -- ${exp.mode}, ${exp.location.split(',')[0]}\\\\
+const generateExperienceSection = (exp: Experience | Independent) => `
+\\noindent\\textbf{${exp.position}} \\hfill ${!exp?.from
+    ? 'On Demand'
+    : `${exp?.from.split('-')[0]} - ${exp?.to ? exp?.to.split('-')[0] : 'Present'}`
+  }\\\\
+${exp?.company
+    ? `\\noindent\\textit{${exp?.company}} -- ${exp.mode}, ${exp.location.split(',')[0]}\\\\`
+    : `\\noindent\\textit{${exp.mode}, ${exp.location.split(',')[0]}}\\\\`}
 ${exp.description.includes(':') ? exp.description : `${exp.description}:`}
 \\begin{itemize}[noitemsep]
-  ${generateBulletPoints(exp.description)}
-\\end{itemize}`;
-}
+  ${generateBulletPoints(wrapper(exp.description).join('\n'))}
+\\end{itemize}
+`.trim();
 
 function generateBulletPoints(description: string): string {
   // Si la descripción ya tiene puntos, los usamos
@@ -110,15 +114,14 @@ function generateBulletPoints(description: string): string {
   return `\\item ${description}`;
 }
 
-function generateEducationSection(edu: Education) {
-  return `
+const generateEducationSection = (edu: Education) => `
 \\noindent\\textbf{${edu.degree}} \\hfill ${edu.date}\\\\
 \\noindent\\textit{${edu.institution}} -- ${edu.location}\\\\
-Specialization: ${edu.description}`;
-}
+Specialization: ${edu.description}
+`.trim();
 
-export function generateLatex(): string {
-  return `${generateLatexPreamble()}
+export const generateLatex = () => `
+${generateLatexPreamble()}
 
 ${generateHeader()}
 
@@ -134,19 +137,16 @@ ${languages.map(lang => `  \\item \\textbf{${lang.name}}`).join('\n')}
 \\end{itemize}
 
 \\section*{Independent Consulting & Project Work}
-${experiences
-  .filter(exp => exp.company === 'Freelancer')
-  .map(generateExperienceSection)
-  .join('\n\n')}
+${generateExperienceSection(info.independent)}
 
 \\section*{Professional Experience}
 ${experiences
-  .filter(exp => exp.company !== 'Freelancer')
-  .map(generateExperienceSection)
-  .join('\n\n')}
+    .filter(exp => exp.company !== 'Freelancer')
+    .map(generateExperienceSection)
+    .join('\n\n')}
 
 \\section*{Education}
 ${educations.map(generateEducationSection).join('\n\n')}
 
-\\end{document}`;
-}
+\\end{document}
+`.trim();

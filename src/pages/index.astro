@@ -11,7 +11,9 @@ import habilities from "@/data/habilities";
 import info from "@/data/info";
 import languages from "@/data/languages";
 import links from "@/data/links";
+
 import { formatExp } from "@/helpers";
+import { wrapper } from "@/helpers/arrays";
 ---
 
 <Layout title="Curriculum Vitae - Willem Franco">
@@ -133,9 +135,11 @@ import { formatExp } from "@/helpers";
         <h3 class="title bordered">Independent Consulting & Project Work</h3>
         <div class="flew flex-col mt-4">
           <h4 class="text-base font-bold">{info.independent.position}</h4>
-          <p class="prose prose-sm min-w-full">
-            {info.independent.description}
-          </p>
+          {
+            wrapper(info.independent.description).map((p) => (
+              <p class="prose prose-sm min-w-full">{p}</p>
+            ))
+          }
         </div>
       </div>
       <div>
