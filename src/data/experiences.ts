@@ -12,6 +12,14 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    company: 'Freelancer',
+    mode: 'Remote',
+    location: 'Medellín, Antioquia, Colombia',
+    position: 'Senior Software Engineer',
+    from: '2025-11',
+    description: 'Independent full-stack consultant delivering web applications and custom digital solutions for diverse clients. Worked primarily with React, Node.js, Laravel, and Vue.js, building scalable products with modern development practices. Collaborated remotely with stakeholders to define requirements, implement features, and maintain high-quality deliverables.',
+  },
+  {
     company: 'Postindustria',
     mode: 'Remote',
     location: 'Medellín, Antioquia, Colombia',
