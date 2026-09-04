@@ -12,6 +12,8 @@ export default defineConfig({
   site: 'https://wffranco.github.io',
   base: 'cv',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [
+      tailwindcss(),
+    ],
   },
 });
